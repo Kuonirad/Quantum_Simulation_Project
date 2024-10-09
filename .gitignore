@@ -1,0 +1,33 @@
+# System files
+.Xauthority
+.bash_history
+.bash_logout
+.bashrc
+.cache/
+.config/
+.local/
+.profile
+.sudo_as_admin_successful
+.viminfo
+
+# Development environment
+.appworks/
+.cargo/
+.dotnet/
+.gitconfig
+.gk/
+.ipython/
+.npm/
+.nvm/
+.pki/
+.pyenv/
+.rustup/
+.ssh/
+__pycache__/
+
+# Project-specific
+docs/full_outputs/
+docs/*.txt
+docs/*.log
+docs/*.pdf
+docs/Pasted
