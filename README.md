@@ -3,32 +3,42 @@
 ## Overview
 This document details the integration of Walter Russell's metaphysical principles into the quantum simulation framework, specifically focusing on the Cosmic Duality Operator (ĉ) and Rhythmic Balanced Interchange Operator (V_RB(t)).
 
-## Mathematical Framework
+## Corrected Mathematical Framework
 
-### Cosmic Duality Operator
-The Cosmic Duality Operator is implemented as:
+The mathematical framework has been corrected to be dimensionally consistent and physically sound.
 
-```math
-ĉ = exp(i χ Ĥ)
-```
-
-where:
-- χ is the coupling strength parameter
-- Ĥ is the system Hamiltonian
-
-### Rhythmic Balanced Interchange Operator
-The RBI operator is defined as:
+### Enhanced Hamiltonian
+The core of the simulation is the `enhanced_hamiltonian`, which is now defined as:
 
 ```math
-V_RB(t) = α ℏω sin(ωt)
+Ĥ_{enh}(t) = Ĉ Ĥ₀ Ĉ† + Ĥ_{RB}(t)
 ```
 
-where:
-- α is the coupling strength
-- ω is the oscillation frequency
-- t is time
+This formula describes a quantum system with a base Hamiltonian `Ĥ₀` that is "dressed" by a unitary transformation `Ĉ` and driven by a time-dependent term `Ĥ_{RB}(t)`.
+
+### Cosmic Duality Operator (Ĉ)
+This operator performs a unitary transformation (a rotation) on the Hamiltonian. It is defined as:
+```math
+Ĉ = exp(i χ Ĥ₀)
+```
+- `Ĥ₀` is the base system Hamiltonian.
+- `χ` is a tunable parameter. In this implementation, `χ` is treated as dimensionless, assuming the input Hamiltonian `Ĥ₀` has been scaled appropriately.
+
+### Rhythmic Balanced Interchange (RBI) Term (Ĥ_RB)
+This term represents a time-dependent external field driving the system. It is now correctly implemented as an operator-valued term, not a scalar. For a two-level system, it is defined as:
+```math
+Ĥ_{RB}(t) = α ħω sin(ωt) σ̂_x
+```
+- `α` is a dimensionless coupling strength.
+- `ħω` provides the energy scale for the driving field. In the code, we adopt the common convention of setting `ħ=1`.
+- `σ̂_x` is the Pauli-X matrix, `[[0, 1], [1, 0]]`, which is the operator that couples to the field.
 
 ## Implementation Details
+
+### QHR Model (LSTM Predictor)
+The repository includes a `QHRModel` that uses an LSTM network to predict quantum state evolution.
+
+**Important Note:** As highlighted in a physical audit of this repository, the QHR model in its current form has significant limitations. It does not enforce physical constraints like unitarity or probability conservation by construction. To be a reliable tool, it would require a specialized training pipeline with loss functions that penalize non-physical predictions. This work has not yet been done.
 
 ### Key Components
 
@@ -64,11 +74,12 @@ plot_energy_levels(H0, H_enhanced)
 
 ## Testing
 
-The implementation includes comprehensive tests:
-- Unitary properties of Cosmic Duality Operator
-- Periodicity of RBI Operator
-- Hermiticity of enhanced Hamiltonian
-- QHR model functionality
+The test suite is being updated to verify the physical correctness of the simulation. The following tests are being implemented:
+- **Unitarity of Ĉ:** Verifies that `Ĉ†Ĉ = Î`.
+- **Spectrum Invariance:** Verifies that the eigenvalues of `Ĥ₀` and `ĈĤ₀Ĉ†` are identical.
+- **Probability Conservation:** Verifies that the norm of an evolving state vector remains 1.
+
+Further tests related to energy conservation and the accuracy of the QHR model are pending.
 
 ## References
 
