@@ -22,3 +22,10 @@ pylint==3.3.2
 ruff==0.8.4
 tomlkit==0.13.2
 typing_extensions==4.12.2
+
+# Qiskit and ecosystem for quantum simulation
+# Let pip resolve the Qiskit ecosystem dependencies to the latest stable versions
+qiskit-nature
+pyscf
+qiskit_algorithms
+qiskit-aer

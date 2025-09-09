@@ -1,21 +1,17 @@
-name: quantum-simulation
+name: qiskit-env
 channels:
   - conda-forge
-  - defaults
 dependencies:
   - python=3.10
   - pip
-  - numpy
-  - pyqt=5
-  - pyqtgraph
-  - pyopengl
   - pytest
-  - pytest-qt
-  - flake8
+  # Core scientific packages
+  - numpy
   - scipy
+  - h5py
   - matplotlib
-  - pyyaml
-  - pip:
-    - pyopencl
-    - qutip
-    - pennylane
+  # Qiskit ecosystem for quantum chemistry
+  - qiskit-nature
+  - qiskit-aer
+  - qiskit-algorithms
+  - pyscf
